@@ -81,11 +81,10 @@ void main()
         // 用它作为寻最短路节点
         state[tmp] = 1;
         // 更新距离表
-        for (int j = 1; j < n + 1; j++)
-        {
-            if (distance[j] > distance[tmp] + arr[tmp][j])
-            {
-                distance[j] = distance[tmp] + arr[tmp][j];
+        // 更新 1~2，2~1的可能性，通过了12/20个例子
+ for (int j = 1; j < n + 1; j++) {
+            if (distance[j] > distance[tmp] + arr[tmp][j]||distance[j] > distance[tmp] + arr[j][tmp]) {
+                distance[j] = distance[tmp] + arr[tmp][j]<distance[tmp] + arr[j][tmp]?distance[tmp] + arr[tmp][j]:distance[tmp] + arr[j][tmp];
             }
         }
     }
