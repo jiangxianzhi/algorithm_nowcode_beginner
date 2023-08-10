@@ -2,6 +2,13 @@
 #include<malloc.h>
 // 先排序，然后两个指针从中间往两边移动，直到指针所指的只差比k大
 
+// 只是，这种情况 4 2
+// 1 1 4 4
+// 阁下如何应对
+
+// 遍历，数组，两个指针从每个点开始向两边移动
+// 我就是个天才！！！
+
 int main() {
     int n;
     int k;
@@ -84,6 +91,57 @@ int main() {
     }
 
     printf("%d", maxNum);
+
+
+    return 0;
+}
+
+
+
+
+
+
+// 解法更新
+
+#include <stdio.h>
+#include<malloc.h>
+
+
+
+
+int main() {
+    int n;
+    int k;
+    scanf("%d", &n);
+    scanf("%d", &k);
+
+    int* array = (int*)malloc(sizeof(int ) * n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+// for(int i = 0;i<n;i++){
+//     printf("%d",array[i]);
+// }
+    int max = 0;
+
+    for (int i = 0; i < n; i++) {
+        int tmp = 0;
+        int min = array[i];
+        for (int j = i ;  j < n; j++ ) {
+
+            if (min - array[j] >= -k && min - array[j] <= k ) {
+                tmp++;
+                min = array[j] < min ? array[j] : min;
+            }
+
+
+        }
+        max = max > tmp ? max : tmp;
+    }
+
+
+    printf("%d", max);
 
 
     return 0;
